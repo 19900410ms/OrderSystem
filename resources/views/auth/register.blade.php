@@ -12,10 +12,10 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="table_number" class="col-md-4 col-form-label text-md-right">{{ __('Table No.') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="table_number" type="text" class="form-control @error('name') is-invalid @enderror" name="table_number" value="{{ old('table_number') }}" required autocomplete="table_number" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
