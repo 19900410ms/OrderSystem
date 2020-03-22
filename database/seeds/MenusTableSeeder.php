@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Models\Menu;
+
 class MenusTableSeeder extends Seeder
 {
     /**
@@ -11,6 +13,6 @@ class MenusTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Menu::class, 5)->create();
     }
 }
