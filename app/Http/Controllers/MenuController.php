@@ -8,6 +8,8 @@ use App\Models\Menu;;
 
 use Illuminate\Support\Facades\DB;
 
+use App\Http\Requests\CreateMenu;
+
 class MenuController extends Controller
 {
     public function index(Request $request)
@@ -17,12 +19,21 @@ class MenuController extends Controller
 
     public function create()
     {
-        return redirect('menus/index');
+        return view('menus/create');
     }
 
-    public function store(Request $request)
+    public function store(CreateMenu $request)
     {
-        return view('menus.store');
+        $menu = new Menu;
+
+        $menu->name     = $request->input('name');
+        $menu->image    = $request->input('image');
+        $menu->price    = $request->input('price');
+        $menu->category = $request->input('category');
+
+        $menu->save();
+
+        return redirect('menus/index');
     }
 
     public function show($id)
@@ -37,11 +48,11 @@ class MenuController extends Controller
 
     public function update(Request $request, $id)
     {
-        return redirect('menu/index');
+        return redirect('menus/index');
     }
 
     public function destroy($id)
     {
-        return redirect('menu/index');
+        return redirect('menus/index');
     }
 }
