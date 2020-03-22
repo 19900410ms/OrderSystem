@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="menu-create">
-  <form method="POST" action="{{ route('menus.store') }}">
+  <form method="POST" action="{{ route('menu.store') }}">
     @csrf
     <div class="form-group">
       <label for="exampleFormControlInput1">料理名</label>
@@ -20,11 +20,11 @@
     <div class="form-group">
       <label for="exampleFormControlSelect1">カテゴリー</label>
       <select name="category" class="form-control" id="exampleFormControlSelect1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <option value="1">肉料理</option>
+        <option value="2">魚料理</option>
+        <option value="3">サラダ</option>
+        <option value="4">ドリンク</option>
+        <option value="5">デザート</option>
       </select>
     </div>
     <button type="submit" class="btn btn-primary mb-2">登録する</button>

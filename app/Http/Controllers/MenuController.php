@@ -14,12 +14,12 @@ class MenuController extends Controller
 {
     public function index(Request $request)
     {
-        return view('menus.index');
+        return view('menu.index');
     }
 
     public function create()
     {
-        return view('menus/create');
+        return view('menu/create');
     }
 
     public function store(CreateMenu $request)
@@ -33,26 +33,37 @@ class MenuController extends Controller
 
         $menu->save();
 
-        return redirect('menus/index');
+        return redirect('menu/index');
     }
 
     public function show($id)
     {
-        return view('menus.show');
+        return view('menu.show');
     }
 
     public function edit($id)
     {
-        return view('menus.edit');
+        $menu = Menu::find($id);
+
+        return view('menu.edit', compact('menu'));
     }
 
-    public function update(Request $request, $id)
+    public function update(CreateMenu $request, $id)
     {
-        return redirect('menus/index');
+        $menu = Menu::find($id);
+
+        $menu->name     = $request->input('name');
+        $menu->image    = $request->input('image');
+        $menu->price    = $request->input('price');
+        $menu->category = $request->input('category');
+
+        $menu->save();
+        
+        return redirect('menu/index');
     }
 
     public function destroy($id)
     {
-        return redirect('menus/index');
+        return redirect('menu/index');
     }
 }

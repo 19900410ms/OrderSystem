@@ -6,5 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    //
+    const CATEGORY = [
+        1 => ['label' => '肉料理'],
+        2 => ['label' => '魚料理'],
+        3 => ['label' => 'サラダ'],
+        4 => ['label' => 'ドリンク'],
+        5 => ['label' => 'デザート'],
+    ];
+
+    public function getCategoryLabelAttribute()
+    {
+        $category = $this->attributes['category'];
+
+        return self::CATEGORY[$category]['label'];
+    }
 }
