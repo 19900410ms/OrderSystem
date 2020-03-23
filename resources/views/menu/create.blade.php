@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="menu-create">
+<div class="container">
   <form method="POST" action="{{ route('menu.store') }}">
     @csrf
     <div class="form-group">

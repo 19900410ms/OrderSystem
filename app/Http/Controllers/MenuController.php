@@ -14,7 +14,12 @@ class MenuController extends Controller
 {
     public function index(Request $request)
     {
-        return view('menu.index');
+        $menus = DB::table('menus')
+        ->select('id', 'name', 'image', 'price', 'category')
+        ->orderBy('created_at', 'asc')
+        ->get();
+
+        return view('menu.index', compact('menus'));
     }
 
     public function create()
