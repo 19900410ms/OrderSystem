@@ -12,6 +12,7 @@ class Menu extends Model
         3 => ['label' => 'サラダ'],
         4 => ['label' => 'ドリンク'],
         5 => ['label' => 'デザート'],
+        6 => ['label' => 'その他'],
     ];
 
     public function getCategoryLabelAttribute()

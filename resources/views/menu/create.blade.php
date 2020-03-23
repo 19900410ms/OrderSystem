@@ -25,6 +25,7 @@
         <option value="3">サラダ</option>
         <option value="4">ドリンク</option>
         <option value="5">デザート</option>
+        <option value="6">その他</option>
       </select>
     </div>
     <button type="submit" class="btn btn-primary mb-2">登録する</button>

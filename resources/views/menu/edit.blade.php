@@ -25,6 +25,7 @@
         <option value="3" @if($menu->category === 3) selected @endif>サラダ</option>
         <option value="4" @if($menu->category === 4) selected @endif>ドリンク</option>
         <option value="5" @if($menu->category === 5) selected @endif>デザート</option>
+        <option value="5" @if($menu->category === 6) selected @endif>その他</option>
       </select>
     </div>
     <button type="submit" class="btn btn-primary mb-2">変更する</button>
