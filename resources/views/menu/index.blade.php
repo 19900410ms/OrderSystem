@@ -11,6 +11,12 @@
           <h5 class="card-title">{{ $menu->name }}</h5>
           <p class="card-text">{{ $menu->price }} yen</p>
           <a href="{{ route('menu.show', ['id' => $menu->id]) }}" class="card-link">詳細ページ</a>
+          @if (auth()->user()->is_admin == 1)
+            <form method="POST" action="{{ route('menu.destroy', ['id' => $menu->id]) }}" id="delete_{{ $menu->id }}">
+              @csrf
+              <a href="#" class="card-link" data-id="{{ $menu->id }}" onclick="deletePost(this);">削除する</a>
+            </form>
+          @endif
         </div>
       </div>
     @endforeach
@@ -18,3 +24,12 @@
 </div>
 
 @endsection
+
+<script>
+function deletePost(e) {
+  'use strict';
+  if (confirm('本当に削除してもいいですか？')) {
+    document.getElementById('delete_' + e.dataset.id).submit();
+  }
+}
+</script>

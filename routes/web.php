@@ -17,5 +17,5 @@ Route::group(['prefix' => 'menu' ,'middleware' => 'auth'], function() {
     Route::get('show/{id}', 'MenuController@show')->name('menu.show');
     Route::get('edit/{id}', 'MenuController@edit')->name('menu.edit');
     Route::post('update/{id}', 'MenuController@update')->name('menu.update');
-    Route::delete('destroy/{id}', 'MenuController@destroy')->name('menu.destroy');
+    Route::post('destroy/{id}', 'MenuController@destroy')->name('menu.destroy');
 });

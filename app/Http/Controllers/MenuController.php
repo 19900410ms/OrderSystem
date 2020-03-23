@@ -91,6 +91,10 @@ class MenuController extends Controller
 
     public function destroy($id)
     {
+        $menu = Menu::find($id);
+
+        $menu->delete();
+
         return redirect('menu/index');
     }
 
