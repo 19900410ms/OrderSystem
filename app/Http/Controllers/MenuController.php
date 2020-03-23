@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Menu;;
-
 use Illuminate\Support\Facades\DB;
-
 use App\Http\Requests\CreateMenu;
+use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
@@ -32,9 +32,19 @@ class MenuController extends Controller
         $menu = new Menu;
 
         $menu->name     = $request->input('name');
-        $menu->image    = $request->input('image');
         $menu->price    = $request->input('price');
         $menu->category = $request->input('category');
+
+        if ($request->has('image')) {
+            // イメージの取得
+            $image = $request->file('image');
+            $name = Str::slug($request->input('name')).'_'.time();
+            $folder = '/uploads/images/';
+            $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
+            $this->uploadOne($image, $folder, 'public', $name);
+            $menu->image = $filePath;
+        }
+
 
         $menu->save();
 
@@ -60,9 +70,19 @@ class MenuController extends Controller
         $menu = Menu::find($id);
 
         $menu->name     = $request->input('name');
-        $menu->image    = $request->input('image');
         $menu->price    = $request->input('price');
         $menu->category = $request->input('category');
+        
+        // 画像保存処理
+        if ($request->has('image')) {
+            // イメージの取得
+            $image = $request->file('image');
+            $name = Str::slug($request->input('name')).'_'.time();
+            $folder = '/uploads/images/';
+            $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
+            $this->uploadOne($image, $folder, 'public', $name);
+            $menu->image = $filePath;
+        }
 
         $menu->save();
         
@@ -72,5 +92,15 @@ class MenuController extends Controller
     public function destroy($id)
     {
         return redirect('menu/index');
+    }
+
+    // 画像保存
+    public function uploadOne(UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
+    {
+        $name = !is_null($filename) ? $filename : Str::random(25);
+
+        $file = $uploadedFile->storeAs($folder, $name.'.'.$uploadedFile->getClientOriginalExtension(), $disk);
+
+        return $file;
     }
 }

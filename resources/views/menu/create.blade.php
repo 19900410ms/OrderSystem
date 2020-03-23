@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-  <form method="POST" action="{{ route('menu.store') }}">
+  <form enctype="multipart/form-data" method="POST" action="{{ route('menu.store') }}">
     @csrf
     <div class="form-group">
       <label for="exampleFormControlInput1">料理名</label>

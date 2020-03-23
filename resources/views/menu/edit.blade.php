@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-  <form method="POST" action="{{ route('menu.update', ['id' => $menu->id]) }}">
+  <form enctype="multipart/form-data" method="POST" action="{{ route('menu.update', ['id' => $menu->id]) }}">
     @csrf
     <div class="form-group">
       <label for="exampleFormControlInput1">料理名</label>
