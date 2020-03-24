@@ -21,4 +21,10 @@ class Menu extends Model
 
         return self::CATEGORY[$category]['label'];
     }
+
+    // hasMany
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 }
