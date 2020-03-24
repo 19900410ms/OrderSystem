@@ -10882,3 +10882,8 @@ a.text-dark:focus {
   }
 }
 
+.menu-create {
+  width: 80%;
+  margin: 0 auto;
+}
+
