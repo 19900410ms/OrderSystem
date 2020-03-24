@@ -13,6 +13,6 @@ $factory->define(Menu::class, function (Faker $faker) {
         'name'    => $faker->unique()->foodName(),
         'image'   => $faker->image('public/storage',640,480, null, false),
         'price'   => $faker->randomFloat(4, 300, 2000),
-        'category'=> $faker->randomFloat(2, 1, 15),
+        'category'=> $faker->randomFloat(2, 1, 6),
     ];
 });

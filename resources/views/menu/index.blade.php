@@ -12,6 +12,7 @@
           <p class="card-text">{{ $menu->price }} yen</p>
           <a href="{{ route('menu.show', ['id' => $menu->id]) }}" class="card-link">詳細ページ</a>
           @if (auth()->user()->is_admin == 1)
+            <a href="{{ route('menu.edit', ['id' => $menu->id]) }}" class="card-link">編集ページ</a>
             <form method="POST" action="{{ route('menu.destroy', ['id' => $menu->id]) }}" id="delete_{{ $menu->id }}">
               @csrf
               <a href="#" class="card-link" data-id="{{ $menu->id }}" onclick="deletePost(this);">削除する</a>
