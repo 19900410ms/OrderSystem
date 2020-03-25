@@ -23,7 +23,7 @@ Route::group(['prefix' => 'menu' ,'middleware' => 'auth'], function() {
 Route::group(['prefix' => 'order' ,'middleware' => 'auth'], function() {
     Route::get('index', 'OrderController@index')->name('order.index');
     Route::get('create', 'OrderController@create')->name('order.create');
-    Route::post('store', 'OrderController@store')->name('order.store');
+    Route::post('store/{menu_id}/menu', 'OrderController@store')->name('order.store');
     Route::get('show/{id}', 'OrderController@show')->name('order.show');
     Route::get('edit/{id}', 'OrderController@edit')->name('order.edit');
     Route::post('update/{id}', 'OrderController@update')->name('order.update');

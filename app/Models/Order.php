@@ -17,4 +17,8 @@ class Order extends Model
      {
          return $this->belongsTo('App\Models\Menu');
      }
+
+     protected $fillable = [
+        'menu_id', 'user_id',
+    ];
 }

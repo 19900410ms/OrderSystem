@@ -36,9 +36,19 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $order = new Order();
+
+        $order->count = $request->count;
+        $order->user_id = $request->user()->id;
+        $order->menu_id = $id;
+
+        $request->session()->put('key', 'value');
+
+        $order->save();
+
+        return redirect('order/index');
     }
 
     /**

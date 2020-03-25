@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div>
-    <div class="card-group">
+    <div class="card-columns">
       <div class="card">
         <img class="card-img-top" src="../storage/meat.jpg" height="220px" width="100%" alt="Meats">
         <div class="card-body">
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div>
-    <div class="card-group">
+    <div class="card-columns">
       <div class="card">
         <img class="card-img-top" src="../storage/drink.jpg" height="220px" width="100%" alt="Drinks">
         <div class="card-body">
