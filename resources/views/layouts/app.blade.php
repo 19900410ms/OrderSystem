@@ -55,15 +55,19 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('home') }}" class="dropdown-item">home</a>
-                                    <a href="{{ route('admin.home') }}" class="dropdown-item">adminhome</a>
+                                    @if (auth()->user()->is_admin == 1)
+                                      <a href="{{ route('admin.home') }}" class="dropdown-item">管理画面</a>
+                                      <a href="{{ route('order.index') }}" class="dropdown-item">注文一覧</a>
+                                      <a href="{{ route('menu.create') }}" class="dropdown-item">商品登録</a>
+                                    @else
+                                      <a href="{{ route('order.index') }}" class="dropdown-item">注文履歴</a>
+                                    @endif
+                                    <a href="{{ route('home') }}" class="dropdown-item">カテゴリー選択</a>
                                     <a href="{{ route('menu.index') }}" class="dropdown-item">商品一覧</a>
-                                    <a href="{{ route('menu.create') }}" class="dropdown-item">商品登録</a>
-                                    <a href="{{ route('order.index') }}" class="dropdown-item">注文履歴</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('ログアウト') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

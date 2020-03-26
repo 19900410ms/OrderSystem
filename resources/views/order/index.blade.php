@@ -1,10 +1,3 @@
-<?php
-  $total_price = 0;
-  foreach ($orders as $order) {
-    $single_price = $order->menu->price * $order->count;
-    $total_price += $single_price;
-  }
-?>
 @extends('layouts.app')
 
 @section('content')
@@ -46,6 +39,16 @@
   </div>
 
   @if (auth()->user()->is_admin != 1)
+    <?php
+      $total_price = 0;
+      foreach ($orders as $order) {
+        if (auth()->user()->id == $order->user_id) {
+          $single_price = $order->menu->price * $order->count;
+          $total_price += $single_price;
+        }
+      }
+      // return $total_price;
+    ?>
     <div class="card text-center">
       <div class="card-header">
         Total Price
