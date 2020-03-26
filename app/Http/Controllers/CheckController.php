@@ -13,4 +13,23 @@ class CheckController extends Controller
 
         return view('check.index', compact('checks'));
     }
+
+    public function store(Request $request)
+    {
+        $check = new Check();
+
+        $check->total_price = $request->total_price;
+        $check->user_id = $request->user()->id;
+
+        $check->save();
+
+        return redirect('check/show/'.$check->id);
+    }
+
+    public function show($id)
+    {
+        $check = Check::find($id);
+
+        return view('check.show', compact('check'));
+    }
 }

@@ -53,10 +53,13 @@
       <div class="card-header">
         Total Price
       </div>
-      <div class="card-body">
-        <h5 class="card-title">{{ $total_price }}</h5>
-        <a href="#" class="btn btn-primary">お会計へ</a>
-      </div>
+      <form enctype="multipart/form-data" method="POST" action="{{ route('check.store', ['total_price' => $total_price]) }}">
+        @csrf
+        <div class="card-body">
+          <h5 class="card-title">{{ $total_price }}</h5>
+          <button type="submit" class="btn btn-primary">お会計へ</button>
+        </div>
+      </form>
     </div>
   @endif
 </div>
