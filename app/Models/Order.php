@@ -12,13 +12,13 @@ class Order extends Model
         return $this->belongsTo('App\User');
     }
 
-     // belongsTo
-     public function menu()
-     {
-         return $this->belongsTo('App\Models\Menu');
-     }
+    // belongsTo
+    public function menu()
+    {
+        return $this->belongsTo('App\Models\Menu');
+    }
 
-     protected $fillable = [
+    protected $fillable = [
         'menu_id', 'user_id',
     ];
 }

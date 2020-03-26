@@ -18,8 +18,6 @@ class CreateChecksTable extends Migration
             $table->integer('total_price');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders');
             $table->timestamps();
         });
     }
@@ -33,7 +31,6 @@ class CreateChecksTable extends Migration
     {
         Schema::table('checks', function (Blueprint $table) {
             $table->dropForeign('orders_user_id_foreign');
-            $table->dropForeign('orders_order_id_foreign');
         });
     }
 }

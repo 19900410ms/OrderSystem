@@ -16,7 +16,10 @@ class ChecksTableSeeder extends Seeder
             [
               'total_price' => '20000',
               'user_id'     => '2',
-              'order_id'    => '2',
+            ],
+            [
+              'total_price' => '30000',
+              'user_id'     => '3',
             ],
         ];
   
