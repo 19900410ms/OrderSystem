@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
 use App\Models\Order;
 
 class OrdersTableSeeder extends Seeder
@@ -17,37 +16,31 @@ class OrdersTableSeeder extends Seeder
         $order = [
             [
               'count'        => '1',
-              'table_number' => '1',
               'user_id'      => '2',
               'menu_id'      => '1',
             ],
             [
               'count'        => '5',
-              'table_number' => '1',
               'user_id'      => '2',
               'menu_id'      => '2',
             ],
             [
               'count'        => '3',
-              'table_number' => '2',
               'user_id'      => '2',
               'menu_id'      => '3',
              ],
             [
               'count'        => '2',
-              'table_number' => '2',
               'user_id'      => '3',
               'menu_id'      => '4',
             ],
             [
               'count'        => '3',
-              'table_number' => '2',
               'user_id'      => '3',
               'menu_id'      => '5',
             ],
             [
               'count'        => '1',
-              'table_number' => '1',
               'user_id'      => '3',
               'menu_id'      => '6',
             ],
