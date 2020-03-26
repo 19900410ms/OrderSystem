@@ -57,6 +57,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (auth()->user()->is_admin == 1)
                                       <a href="{{ route('admin.home') }}" class="dropdown-item">管理画面</a>
+                                      <a href="{{ route('check.index') }}" class="dropdown-item">会計一覧</a>
                                       <a href="{{ route('order.index') }}" class="dropdown-item">注文一覧</a>
                                       <a href="{{ route('menu.create') }}" class="dropdown-item">商品登録</a>
                                     @else

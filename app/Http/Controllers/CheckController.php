@@ -32,4 +32,13 @@ class CheckController extends Controller
 
         return view('check.show', compact('check'));
     }
+
+    public function destroy($id)
+    {
+        $check = Check::find($id);
+
+        $check->delete();
+
+        return redirect('check/index');
+    }
 }
