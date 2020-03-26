@@ -25,3 +25,9 @@ Route::group(['prefix' => 'order' ,'middleware' => 'auth'], function() {
     Route::post('store/{menu_id}/menu', 'OrderController@store')->name('order.store');
     Route::post('destroy/{id}', 'OrderController@destroy')->name('order.destroy');
 });
+
+Route::group(['prefix' => 'check' ,'middleware' => 'auth'], function() {
+    Route::get('index', 'CheckController@index')->name('check.index');
+    Route::post('store', 'CheckController@store')->name('check.store');
+    Route::get('show/{id}', 'CheckController@show')->name('check.show');
+});
