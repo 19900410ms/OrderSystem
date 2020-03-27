@@ -18,6 +18,12 @@ Route::group(['prefix' => 'menu' ,'middleware' => 'auth'], function() {
     Route::get('edit/{id}', 'MenuController@edit')->name('menu.edit');
     Route::post('update/{id}', 'MenuController@update')->name('menu.update');
     Route::post('destroy/{id}', 'MenuController@destroy')->name('menu.destroy');
+    Route::get('/category/meat', 'MenuController@meat')->name('menu.meat');
+    Route::get('/category/fish', 'MenuController@fish')->name('menu.fish');
+    Route::get('/category/salada', 'MenuController@salada')->name('menu.salada');
+    Route::get('/category/drink', 'MenuController@drink')->name('menu.drink');
+    Route::get('/category/sweet', 'MenuController@sweet')->name('menu.sweet');
+    Route::get('/category/other', 'MenuController@other')->name('menu.other');
 });
 
 Route::group(['prefix' => 'order' ,'middleware' => 'auth'], function() {

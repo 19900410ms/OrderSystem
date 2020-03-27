@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCheck;
 use App\Models\Check;
 
 class CheckController extends Controller
@@ -14,7 +15,7 @@ class CheckController extends Controller
         return view('check.index', compact('checks'));
     }
 
-    public function store(Request $request)
+    public function store(StoreCheck $request)
     {
         $check = new Check();
 

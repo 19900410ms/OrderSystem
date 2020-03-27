@@ -98,6 +98,48 @@ class MenuController extends Controller
         return redirect('menu/index');
     }
 
+    public function meat(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 1)->get();
+
+        return view('menu.category.meat', compact('menus'));
+    }
+
+    public function fish(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 2)->get();
+
+        return view('menu.category.fish', compact('menus'));
+    }
+
+    public function salada(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 3)->get();
+
+        return view('menu.category.salada', compact('menus'));
+    }
+
+    public function drink(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 4)->get();
+
+        return view('menu.category.drink', compact('menus'));
+    }
+
+    public function sweet(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 5)->get();
+
+        return view('menu.category.sweet', compact('menus'));
+    }
+
+    public function other(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 6)->get();
+
+        return view('menu.category.other', compact('menus'));
+    }
+
     // 画像保存
     public function uploadOne(UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
     {
