@@ -3,24 +3,33 @@
 @section('content')
 
 <div class="container">
-  <div class="card-columns">
-    @foreach($checks as $check)
-      <div class="card">
-        <div class="card-header">{{ $check->user->table_number }}</div>
-        <div class="card-body">
-          <h5 class="card-title">{{ $check->total_price }}</h5>
-          <p class="card-text">{{ $check->created_at }}</p>
-          @if (auth()->user()->is_admin == 1)
-            <a href="{{ route('check.show', ['id' => $check->id]) }}" class="card-link">詳細を見る</a>
-            <form method="POST" action="{{ route('check.destroy', ['id' => $check->id]) }}" id="delete_{{ $check->id }}">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Table No.</th>
+        <th scope="col">金額</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">精算時刻</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($checks as $check)
+        <tr>
+          
+          <td>{{ $check->user->table_number }}</td>
+          <td>{{ $check->total_price }}</td>
+          <td><a href="{{ route('check.show', ['id' => $check->id]) }}" class="card-link">詳細を見る</a></td>
+          <td>
+            <form method="POST" action="{{ route('check.destroy', ['id' => $check->id]) }}" id="delete_{{ $check->id }}" class="margin-0">
               @csrf
               <a href="#" class="card-link" data-id="{{ $check->id }}" onclick="deletePost(this);">削除する</a>
-            </form>
-          @endif
-        </div>
-      </div>
-    @endforeach
-  </div>
+            </form></td>
+          <td>{{ $check->created_at }}</td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
 </div>
 
 @endsection
