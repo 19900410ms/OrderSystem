@@ -38,11 +38,18 @@ class MenuController extends Controller
         if ($request->has('image')) {
             // イメージの取得
             $image = $request->file('image');
-            $name = Str::slug($request->input('name')).'_'.time();
-            $folder = '/uploads/images/';
-            $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
-            $this->uploadOne($image, $folder, 'public', $name);
-            $menu->image = $filePath;
+            // バケットの`myprefix`フォルダへアップロード
+            $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+            // アップロードした画像のフルパスを取得
+            $menu->image = Storage::disk('s3')->url($path);
+
+            // ローカル環境 イメージの取得
+            // $image = $request->file('image');
+            // $name = Str::slug($request->input('name')).'_'.time();
+            // $folder = '/uploads/images/';
+            // $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
+            // $this->uploadOne($image, $folder, 'public', $name);
+            // $menu->image = $filePath;
         }
 
 
@@ -75,13 +82,16 @@ class MenuController extends Controller
         
         // 画像保存処理
         if ($request->has('image')) {
-            // イメージの取得
             $image = $request->file('image');
-            $name = Str::slug($request->input('name')).'_'.time();
-            $folder = '/uploads/images/';
-            $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
-            $this->uploadOne($image, $folder, 'public', $name);
-            $menu->image = $filePath;
+            $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+            $menu->image = Storage::disk('s3')->url($path);
+            
+            // $image = $request->file('image');
+            // $name = Str::slug($request->input('name')).'_'.time();
+            // $folder = '/uploads/images/';
+            // $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
+            // $this->uploadOne($image, $folder, 'public', $name);
+            // $menu->image = $filePath;
         }
 
         $menu->save();
