@@ -11,7 +11,7 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">{{ $menu->name }}</h5>
-          <p class="card-text">{{ $menu->price }} yen</p>
+          <p class="card-text">¥ {{ $menu->price }}</p>
           <form enctype="multipart/form-data" method="POST" action="{{ route('order.store', ['menu_id' => $menu->id]) }}">
             @csrf
             <div class="form-group">

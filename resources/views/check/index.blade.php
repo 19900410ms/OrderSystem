@@ -16,9 +16,8 @@
     <tbody>
       @foreach($checks as $check)
         <tr>
-          
           <td>{{ $check->user->table_number }}</td>
-          <td>{{ $check->total_price }}</td>
+          <td>¥ {{ $check->total_price }}</td>
           <td><a href="{{ route('check.show', ['id' => $check->id]) }}" class="card-link">詳細を見る</a></td>
           <td>
             <form method="POST" action="{{ route('check.destroy', ['id' => $check->id]) }}" id="delete_{{ $check->id }}" class="margin-0">

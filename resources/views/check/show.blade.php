@@ -8,9 +8,9 @@
       お会計金額
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{ $check->total_price }} 円</h5>
+      <h5 class="card-title margin-0">¥ {{ $check->total_price }}</h5>
       @if (Auth()->user()->is_admin !== 1)
-        <p class="card-text">御来店いただき、誠にありがとうございました。</h5>
+        <p class="card-text margin-top-16">御来店いただき、誠にありがとうございました。</h5>
       @endif
     </div>
   </div>

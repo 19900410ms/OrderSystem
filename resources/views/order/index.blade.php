@@ -23,10 +23,10 @@
         ?>
         <tbody>
           <tr>
-            <td>{{ $order->id }}</td>
+            <td>{{ $order->user->table_number }}</td>
             <td>{{ $order->menu->name }}</td>
             <td>{{ $order->count }} × {{ $order->menu->price }} yen</td>
-            <td>{{ $total }}</td>
+            <td>¥ {{ $total }}</td>
             <td>
               <form method="POST" action="{{ route('order.destroy', ['id' => $order->id]) }}" id="delete_{{ $order->id }}" class="margin-0">
                 @csrf
@@ -47,8 +47,8 @@
             <tr>
               <td>{{ $order->id }}</td>
               <td>{{ $order->menu->name }}</td>
-              <td>{{ $order->count }} × {{ $order->menu->price }} yen</td>
-              <td>{{ $total }}</td>
+              <td>{{ $order->count }} × ¥ {{ $order->menu->price }}</td>
+              <td>¥ {{ $total }}</td>
             </tr>
           </tbody>
         @endif
@@ -74,7 +74,7 @@
       <form enctype="multipart/form-data" method="POST" action="{{ route('check.store', ['total_price' => $total_price]) }}">
         @csrf
         <div class="card-body">
-          <h5 class="card-title">{{ $total_price }}</h5>
+          <h5 class="card-title">¥ {{ $total_price }}</h5>
           <button type="submit" class="btn btn-primary">お会計へ</button>
         </div>
       </form>
