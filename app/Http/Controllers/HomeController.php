@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Models\Check;
 
 class HomeController extends Controller
 {
@@ -33,6 +35,11 @@ class HomeController extends Controller
      */
     public function adminHome()
     {
-        return view('home/adminHome');
+        // 当月分のデータのみを抽出
+        $checks = Check::whereMonth('created_at', date('m'))
+        ->whereYear('created_at', date('Y'))
+        ->get(['total_price','created_at']);
+
+        return view('home/adminHome', compact('checks'));
     }
 }

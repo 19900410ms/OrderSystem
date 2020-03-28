@@ -15,7 +15,6 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         $menus = DB::table('menus')
-        ->select('id', 'name', 'image', 'price', 'category')
         ->orderBy('created_at', 'asc')
         ->get();
 
@@ -38,11 +37,18 @@ class MenuController extends Controller
         if ($request->has('image')) {
             // イメージの取得
             $image = $request->file('image');
-            $name = Str::slug($request->input('name')).'_'.time();
-            $folder = '/uploads/images/';
-            $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
-            $this->uploadOne($image, $folder, 'public', $name);
-            $menu->image = $filePath;
+            // バケットの`myprefix`フォルダへアップロード
+            $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+            // アップロードした画像のフルパスを取得
+            $menu->image = Storage::disk('s3')->url($path);
+
+            // ローカル環境 イメージの取得
+            // $image = $request->file('image');
+            // $name = Str::slug($request->input('name')).'_'.time();
+            // $folder = '/uploads/images/';
+            // $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
+            // $this->uploadOne($image, $folder, 'public', $name);
+            // $menu->image = $filePath;
         }
 
 
@@ -75,13 +81,16 @@ class MenuController extends Controller
         
         // 画像保存処理
         if ($request->has('image')) {
-            // イメージの取得
             $image = $request->file('image');
-            $name = Str::slug($request->input('name')).'_'.time();
-            $folder = '/uploads/images/';
-            $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
-            $this->uploadOne($image, $folder, 'public', $name);
-            $menu->image = $filePath;
+            $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+            $menu->image = Storage::disk('s3')->url($path);
+            
+            // $image = $request->file('image');
+            // $name = Str::slug($request->input('name')).'_'.time();
+            // $folder = '/uploads/images/';
+            // $filePath = $folder.$name.'.'.$image->getClientOriginalExtension();
+            // $this->uploadOne($image, $folder, 'public', $name);
+            // $menu->image = $filePath;
         }
 
         $menu->save();
@@ -96,6 +105,48 @@ class MenuController extends Controller
         $menu->delete();
 
         return redirect('menu/index');
+    }
+
+    public function meat(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 1)->get();
+
+        return view('menu.category.meat', compact('menus'));
+    }
+
+    public function fish(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 2)->get();
+
+        return view('menu.category.fish', compact('menus'));
+    }
+
+    public function salada(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 3)->get();
+
+        return view('menu.category.salada', compact('menus'));
+    }
+
+    public function drink(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 4)->get();
+
+        return view('menu.category.drink', compact('menus'));
+    }
+
+    public function sweet(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 5)->get();
+
+        return view('menu.category.sweet', compact('menus'));
+    }
+
+    public function other(Request $request)
+    {
+        $menus = DB::table('menus')->where('category', '=', 6)->get();
+
+        return view('menu.category.other', compact('menus'));
     }
 
     // 画像保存

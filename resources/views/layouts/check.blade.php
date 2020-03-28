@@ -41,11 +41,6 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="{{ route('menu.create') }}">商品登録</a>
             </li>
-          @else
-            <li class="nav-item">
-              <a class="nav-link text-white" href="{{ route('order.index') }}">注文履歴</a>
-            </li>
-          @endif
             <li class="nav-item">
               <a class="nav-link text-white" href="{{ route('home') }}">カテゴリー選択</a>
             </li>
@@ -63,6 +58,7 @@
                 @csrf
               </form>
             </li>
+          @endif
         </ul>
       </div>
     </nav>

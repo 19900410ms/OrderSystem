@@ -11,7 +11,7 @@
           <h5 class="card-title">{{ $menu->name }}</h5>
           <p class="card-text">¥ {{ $menu->price }}</p>
           @if (auth()->user()->is_admin == 1)
-            <a href="{{ route('menu.edit', ['id' => $menu->id]) }}" class="card-link">編集ページ</a>
+            <a href="{{ route('menu.edit', ['id' => $menu->id]) }}" class="card-link margin-16">編集ページ</a>
             <form method="POST" action="{{ route('menu.destroy', ['id' => $menu->id]) }}" id="delete_{{ $menu->id }}" class="margin-top-16">
               @csrf
               <a href="#" class="card-link" data-id="{{ $menu->id }}" onclick="deletePost(this);">削除する</a>
