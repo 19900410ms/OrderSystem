@@ -20,10 +20,14 @@
           <td>¥ {{ $check->total_price }}</td>
           <td><a href="{{ route('check.show', ['id' => $check->id]) }}" class="card-link">詳細を見る</a></td>
           <td>
-            <form method="POST" action="{{ route('check.destroy', ['id' => $check->id]) }}" id="delete_{{ $check->id }}" class="margin-0">
-              @csrf
-              <a href="#" class="card-link" data-id="{{ $check->id }}" onclick="deletePost(this);">削除する</a>
-            </form></td>
+            @if ($check->status === 1)
+              精算済み
+            @else
+              <form method="POST" action="{{ route('check.destroy', ['id' => $check->id]) }}" id="delete_{{ $check->id }}" class="margin-0">
+                @csrf
+                <a href="#" class="card-link" data-id="{{ $check->id }}" onclick="deletePost(this);">削除する</a>
+              </form></td>
+            @endif
           <td>{{ $check->created_at }}</td>
         </tr>
       @endforeach

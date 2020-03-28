@@ -10,7 +10,8 @@ class CheckController extends Controller
 {
     public function index()
     {
-        $checks = Check::all();
+        $checks = Check::orderBy('created_at', 'desc')
+        ->get();
 
         return view('check.index', compact('checks'));
     }
@@ -32,6 +33,17 @@ class CheckController extends Controller
         $check = Check::find($id);
 
         return view('check.show', compact('check'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $check = Check::find($id);
+
+        $check->status = $request->status;
+
+        $check->save();
+
+        return redirect('check/index');
     }
 
     public function destroy($id)

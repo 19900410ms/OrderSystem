@@ -10,9 +10,8 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $orders = Order::all();
-
-        // dd($orders);
+        $orders = Order::orderBy('created_at', 'desc')
+        ->get();
 
         return view('order.index', compact('orders'));
     }
@@ -26,6 +25,17 @@ class OrderController extends Controller
         $order->menu_id = $id;
 
         $request->session()->put('key', 'value');
+
+        $order->save();
+
+        return redirect('order/index');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $order = Order::find($id);
+
+        $order->status = $request->status;
 
         $order->save();
 

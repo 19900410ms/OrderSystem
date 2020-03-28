@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('count');
+            $table->integer('status')->nullable();
             $table->bigInteger('user_id')->unsigned();
             // 外部キーの設定 onメソッドで主テーブルの設定
             $table->foreign('user_id')->references('id')->on('users');

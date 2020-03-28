@@ -11,7 +11,8 @@
         <th scope="col">注文数 × 単価</th>
         <th scope="col">合計金額</th>
         @if (auth()->user()->is_admin == 1)
-          <th scope="col"></th>
+          <th scope="col">処理状況</th>
+          <th scope="col">キャンセル</th>
           <th scope="col">受注時間</th>
         @endif
       </tr>
@@ -28,10 +29,22 @@
             <td>{{ $order->count }} × {{ $order->menu->price }} yen</td>
             <td>¥ {{ $total }}</td>
             <td>
-              <form method="POST" action="{{ route('order.destroy', ['id' => $order->id]) }}" id="delete_{{ $order->id }}" class="margin-0">
-                @csrf
-                <a href="#" class="card-link" data-id="{{ $order->id }}" onclick="deletePost(this);">削除する</a>
-              </form>
+              @if ($order->status === 1)
+                処理済み
+              @else
+                <form method="POST" action="{{ route('order.update', ['id' => $order->id, 'status' => '1']) }}" id="update_{{ $order->id }}" class="margin-0">
+                  @csrf
+                  <a href="#" class="card-link" data-id="{{ $order->id }}" onclick="updatePost(this);">未処理</a>
+                </form>
+              @endif
+            </td>
+            <td>
+              @if ($order->status !== 1)
+                <form method="POST" action="{{ route('order.destroy', ['id' => $order->id]) }}" id="delete_{{ $order->id }}" class="margin-0">
+                  @csrf
+                  <a href="#" class="card-link" data-id="{{ $order->id }}" onclick="deletePost(this);">削除する</a>
+                </form>
+              @endif
             </td>
             <td>{{ $order->created_at }}</td>
           </tr>
@@ -89,6 +102,13 @@ function deletePost(e) {
   'use strict';
   if (confirm('本当に削除してもいいですか？')) {
     document.getElementById('delete_' + e.dataset.id).submit();
+  }
+}
+
+function updatePost(e) {
+  'use strict';
+  if (confirm('未処理から処理済みにしてもいいですか？')) {
+    document.getElementById('update_' + e.dataset.id).submit();
   }
 }
 </script>

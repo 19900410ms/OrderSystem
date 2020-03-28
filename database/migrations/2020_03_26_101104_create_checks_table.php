@@ -16,6 +16,7 @@ class CreateChecksTable extends Migration
         Schema::create('checks', function (Blueprint $table) {
             $table->id();
             $table->integer('total_price');
+            $table->integer('status')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

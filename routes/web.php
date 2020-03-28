@@ -29,6 +29,7 @@ Route::group(['prefix' => 'menu' ,'middleware' => 'auth'], function() {
 Route::group(['prefix' => 'order' ,'middleware' => 'auth'], function() {
     Route::get('index', 'OrderController@index')->name('order.index');
     Route::post('store/{menu_id}/menu', 'OrderController@store')->name('order.store');
+    Route::post('update/{id}', 'OrderController@update')->name('order.update');
     Route::post('destroy/{id}', 'OrderController@destroy')->name('order.destroy');
 });
 
@@ -36,5 +37,6 @@ Route::group(['prefix' => 'check' ,'middleware' => 'auth'], function() {
     Route::get('index', 'CheckController@index')->name('check.index');
     Route::post('store', 'CheckController@store')->name('check.store');
     Route::get('show/{id}', 'CheckController@show')->name('check.show');
+    Route::post('update/{id}', 'CheckController@update')->name('check.update');
     Route::post('destroy/{id}', 'CheckController@destroy')->name('check.destroy');
 });

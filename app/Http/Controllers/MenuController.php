@@ -15,7 +15,6 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         $menus = DB::table('menus')
-        ->select('id', 'name', 'image', 'price', 'category')
         ->orderBy('created_at', 'asc')
         ->get();
 

@@ -37,8 +37,8 @@ class HomeController extends Controller
     {
         // 当月分のデータのみを抽出
         $checks = Check::whereMonth('created_at', date('m'))
-                  ->whereYear('created_at', date('Y'))
-                  ->get(['total_price','created_at']);
+        ->whereYear('created_at', date('Y'))
+        ->get(['total_price','created_at']);
 
         return view('home/adminHome', compact('checks'));
     }
