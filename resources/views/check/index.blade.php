@@ -9,7 +9,7 @@
         <th scope="col">Table No.</th>
         <th scope="col">金額</th>
         <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">精算状況</th>
         <th scope="col">精算時刻</th>
       </tr>
     </thead>
