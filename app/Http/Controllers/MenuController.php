@@ -14,9 +14,16 @@ class MenuController extends Controller
 {
     public function index(Request $request)
     {
-        $menus = DB::table('menus')
-        ->orderBy('created_at', 'asc')
-        ->get();
+        if ($request->has('category')) {
+            $menus = DB::table('menus')
+            ->where('category', '=', $request->category)
+            ->orderBy('created_at', 'asc')
+            ->get();
+        } else {
+            $menus = DB::table('menus')
+            ->orderBy('created_at', 'asc')
+            ->get();
+        }
 
         return view('menu.index', compact('menus'));
     }

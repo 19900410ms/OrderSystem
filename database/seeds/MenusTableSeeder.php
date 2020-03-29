@@ -52,6 +52,20 @@ class MenusTableSeeder extends Seeder
                'price'   => '1500',
                'category'=> '6',
              ],
+             [
+               'name'     => 'invisible menu',
+               'image'    => 'sample',
+               'price'    => '5000',
+               'category' => '1',
+               'is_public'=> '1',
+             ],
+             [
+               'name'     => 'private menu',
+               'image'    => 'sample',
+               'price'    => '10000',
+               'category' => '6',
+               'is_public'=> '1',
+             ],
         ];
 
         foreach ($menu as $key => $value) {
