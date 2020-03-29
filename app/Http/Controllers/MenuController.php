@@ -98,11 +98,36 @@ class MenuController extends Controller
         return redirect('menu/index');
     }
 
-    public function destroy($id)
+    public function private(Request $request)
+    {
+        $menus = DB::table('menus')
+        ->where('is_public', '=', '1')
+        ->orderBy('created_at', 'asc')
+        ->get();
+
+        return view('menu.private', compact('menus'));
+    }
+
+    // メニューの非公開
+    public function closed(Request $request, $id)
     {
         $menu = Menu::find($id);
 
-        $menu->delete();
+        $menu->is_public = '1';
+
+        $menu->save();
+
+        return redirect('menu/private');
+    }
+
+    // メニューの公開
+    public function open(Request $request, $id)
+    {
+        $menu = Menu::find($id);
+
+        $menu->is_public = '2';
+
+        $menu->save();
 
         return redirect('menu/index');
     }

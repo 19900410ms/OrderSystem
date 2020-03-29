@@ -15,11 +15,13 @@ Route::group(['middleware' => ['auth', 'can:admin-only']], function() {
     Route::post('menu/store', 'MenuController@store')->name('menu.store');
     Route::get('menu/edit/{id}', 'MenuController@edit')->name('menu.edit');
     Route::post('menu/update/{id}', 'MenuController@update')->name('menu.update');
-    Route::post('menu/destroy/{id}', 'MenuController@destroy')->name('menu.destroy');
     Route::post('order/update/{id}', 'OrderController@update')->name('order.update');
     Route::post('order/destroy/{id}', 'OrderController@destroy')->name('order.destroy');
     Route::post('check/update/{id}', 'CheckController@update')->name('check.update');
     Route::post('check/destroy/{id}', 'CheckController@destroy')->name('check.destroy');
+    Route::get('menu/private', 'MenuController@private')->name('menu.private');
+    Route::post('menu/closed/{id}', 'MenuController@closed')->name('menu.closed');
+    Route::post('menu/open/{id}', 'MenuController@open')->name('menu.open');
 });
 
 Route::group(['middleware' => ['auth', 'can:user-only']], function () {

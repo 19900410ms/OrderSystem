@@ -19,6 +19,7 @@ class CreateMenusTable extends Migration
             $table->string('image');
             $table->integer('price');
             $table->integer('category');
+            $table->integer('is_public')->nullable();
             $table->timestamps();
         });
     }
