@@ -14,9 +14,16 @@ class MenuController extends Controller
 {
     public function index(Request $request)
     {
-        $menus = DB::table('menus')
-        ->orderBy('created_at', 'asc')
-        ->get();
+        if ($request->has('category')) {
+            $menus = DB::table('menus')
+            ->where('category', '=', $request->category)
+            ->orderBy('created_at', 'asc')
+            ->get();
+        } else {
+            $menus = DB::table('menus')
+            ->orderBy('created_at', 'asc')
+            ->get();
+        }
 
         return view('menu.index', compact('menus'));
     }
@@ -98,55 +105,38 @@ class MenuController extends Controller
         return redirect('menu/index');
     }
 
-    public function destroy($id)
+    public function private(Request $request)
+    {
+        $menus = DB::table('menus')
+        ->where('is_public', '=', '1')
+        ->orderBy('created_at', 'asc')
+        ->get();
+
+        return view('menu.private', compact('menus'));
+    }
+
+    // メニューの非公開
+    public function closed(Request $request, $id)
     {
         $menu = Menu::find($id);
 
-        $menu->delete();
+        $menu->is_public = '1';
+
+        $menu->save();
+
+        return redirect('menu/private');
+    }
+
+    // メニューの公開
+    public function open(Request $request, $id)
+    {
+        $menu = Menu::find($id);
+
+        $menu->is_public = '2';
+
+        $menu->save();
 
         return redirect('menu/index');
-    }
-
-    public function meat(Request $request)
-    {
-        $menus = DB::table('menus')->where('category', '=', 1)->get();
-
-        return view('menu.category.meat', compact('menus'));
-    }
-
-    public function fish(Request $request)
-    {
-        $menus = DB::table('menus')->where('category', '=', 2)->get();
-
-        return view('menu.category.fish', compact('menus'));
-    }
-
-    public function salada(Request $request)
-    {
-        $menus = DB::table('menus')->where('category', '=', 3)->get();
-
-        return view('menu.category.salada', compact('menus'));
-    }
-
-    public function drink(Request $request)
-    {
-        $menus = DB::table('menus')->where('category', '=', 4)->get();
-
-        return view('menu.category.drink', compact('menus'));
-    }
-
-    public function sweet(Request $request)
-    {
-        $menus = DB::table('menus')->where('category', '=', 5)->get();
-
-        return view('menu.category.sweet', compact('menus'));
-    }
-
-    public function other(Request $request)
-    {
-        $menus = DB::table('menus')->where('category', '=', 6)->get();
-
-        return view('menu.category.other', compact('menus'));
     }
 
     // 画像保存

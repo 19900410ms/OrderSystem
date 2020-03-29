@@ -12,7 +12,7 @@
         <th scope="col">合計金額</th>
         @if (auth()->user()->is_admin == 1)
           <th scope="col">処理状況</th>
-          <th scope="col">キャンセル</th>
+          <th scope="col">取消</th>
           <th scope="col">受注時間</th>
         @endif
       </tr>
@@ -42,7 +42,7 @@
               @if ($order->status !== 1)
                 <form method="POST" action="{{ route('order.destroy', ['id' => $order->id]) }}" id="delete_{{ $order->id }}" class="margin-0">
                   @csrf
-                  <a href="#" class="card-link" data-id="{{ $order->id }}" onclick="deletePost(this);">削除する</a>
+                  <a href="#" class="card-link" data-id="{{ $order->id }}" onclick="deletePost(this);">削除</a>
                 </form>
               @endif
             </td>

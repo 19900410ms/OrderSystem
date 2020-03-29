@@ -7,7 +7,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>Order System</title>
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
@@ -36,21 +36,24 @@
               <a class="nav-link text-white" href="{{ route('check.index') }}">会計一覧</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="{{ route('order.index') }}">注文一覧</a>
+              <a class="nav-link text-white" href="{{ route('order.index') }}">オーダー確認</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="{{ route('menu.create') }}">商品登録</a>
+              <a class="nav-link text-white" href="{{ route('menu.create') }}">メニュー登録</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{ route('menu.private') }}">非公開メニュー</a>
             </li>
           @else
             <li class="nav-item">
-              <a class="nav-link text-white" href="{{ route('order.index') }}">注文履歴</a>
+              <a class="nav-link text-white" href="{{ route('order.index') }}">オーダー履歴</a>
             </li>
           @endif
             <li class="nav-item">
-              <a class="nav-link text-white" href="{{ route('home') }}">カテゴリー選択</a>
+              <a class="nav-link text-white" href="{{ route('menu.index') }}">料理一覧</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="{{ route('menu.index') }}">商品一覧</a>
+              <a class="nav-link text-white" href="{{ route('home') }}">カテゴリー選択</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="{{ route('logout') }}"

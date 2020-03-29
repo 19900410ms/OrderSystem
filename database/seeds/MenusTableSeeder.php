@@ -27,31 +27,81 @@ class MenusTableSeeder extends Seeder
                'image'   => '/uploads/images/fish_1585039423.jpg',
                'price'   => '3000',
                'category'=> '2',
-             ],
-             [
+            ],
+            [
                'name'    => 'salada',
                'image'   => '/uploads/images/salada_1585039388.jpg',
                'price'   => '1000',
                'category'=> '3',
-             ],
-             [
+            ],
+            [
                'name'    => 'drink',
                'image'   => '/uploads/images/drink_1585039452.jpg',
                'price'   => '500',
                'category'=> '4',
-             ],
-             [
-               'name'    => 'sweets',
+            ],
+            [
+               'name'    => 'sweet',
                'image'   => '/uploads/images/sweets_1585039505.jpg',
                'price'   => '1000',
                'category'=> '5',
-             ],
-             [
+            ],
+            [
                'name'    => 'other',
                'image'   => '/uploads/images/other_1585039488.jpg',
                'price'   => '1500',
                'category'=> '6',
-             ],
+            ],
+            [
+               'name'     => 'invisible menu',
+               'image'    => 'sample',
+               'price'    => '5000',
+               'category' => '1',
+               'is_public'=> '1',
+            ],
+            [
+               'name'     => 'private menu',
+               'image'    => 'sample',
+               'price'    => '10000',
+               'category' => '6',
+               'is_public'=> '1',
+            ],
+            [
+               'name'    => 'meats',
+               'image'   => '/uploads/images/meat_1585039408.jpg',
+               'price'   => '3000',
+               'category'=> '1',
+            ],
+            [
+               'name'    => 'fishes',
+               'image'   => '/uploads/images/fish_1585039423.jpg',
+               'price'   => '3000',
+               'category'=> '2',
+            ],
+            [
+               'name'    => 'saladas',
+               'image'   => '/uploads/images/salada_1585039388.jpg',
+               'price'   => '1000',
+               'category'=> '3',
+            ],
+            [
+               'name'    => 'drinks',
+               'image'   => '/uploads/images/drink_1585039452.jpg',
+               'price'   => '500',
+               'category'=> '4',
+            ],
+            [
+               'name'    => 'sweets',
+               'image'   => '/uploads/images/sweets_1585039505.jpg',
+               'price'   => '1000',
+               'category'=> '5',
+            ],
+            [
+               'name'    => 'others',
+               'image'   => '/uploads/images/other_1585039488.jpg',
+               'price'   => '1500',
+               'category'=> '6',
+            ],
         ];
 
         foreach ($menu as $key => $value) {

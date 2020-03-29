@@ -15,11 +15,11 @@ class ChecksTableSeeder extends Seeder
         $check = [
             [
               'total_price' => '20000',
-              'user_id'     => '2',
+              'user_id'     => '4',
             ],
             [
               'total_price' => '30000',
-              'user_id'     => '3',
+              'user_id'     => '5',
             ],
         ];
   
