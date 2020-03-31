@@ -24,7 +24,7 @@ class StoreOrder extends FormRequest
     public function rules()
     {
         return [
-            'count'    => 'required',
+            'count'    => 'required|numeric|min:1|max:10',
         ];
     }
 }

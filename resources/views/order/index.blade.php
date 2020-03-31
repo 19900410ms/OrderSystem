@@ -11,7 +11,7 @@
         <th scope="col">注文数 × 単価</th>
         <th scope="col">合計金額</th>
         @if (auth()->user()->is_admin == 1)
-          <th scope="col">処理状況</th>
+          <th scope="col">提供状況</th>
           <th scope="col">取消</th>
           <th scope="col">受注時間</th>
         @endif
@@ -30,11 +30,11 @@
             <td>¥ {{ $total }}</td>
             <td>
               @if ($order->status === 1)
-                処理済み
+                提供済み
               @else
                 <form method="POST" action="{{ route('order.update', ['id' => $order->id, 'status' => '1']) }}" id="update_{{ $order->id }}" class="margin-0">
                   @csrf
-                  <a href="#" class="card-link" data-id="{{ $order->id }}" onclick="updatePost(this);">未処理</a>
+                  <a href="#" class="card-link" data-id="{{ $order->id }}" onclick="updatePost(this);">未提供</a>
                 </form>
               @endif
             </td>

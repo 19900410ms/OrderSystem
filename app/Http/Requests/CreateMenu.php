@@ -26,8 +26,18 @@ class CreateMenu extends FormRequest
         return [
             'name'     => 'required|max:30',
             'image'    => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'price'    => 'required',
-            'category' => 'required',
+            'price'    => 'required|numeric',
+            'category' => 'required|numeric|min:1|max:6',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name'     => '料理名',
+            'image'    => '画像',
+            'price'    => '料金',
+            'category' => 'カテゴリー',
         ];
     }
 }
