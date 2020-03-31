@@ -30,4 +30,14 @@ class CreateMenu extends FormRequest
             'category' => 'required',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'name'     => '料理名',
+            'image'    => '画像',
+            'price'    => '料金',
+            'category' => 'カテゴリー',
+        ];
+    }
 }

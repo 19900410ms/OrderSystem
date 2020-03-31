@@ -3,6 +3,15 @@
 @section('content')
 
 <div class="container">
+  @if($errors->any())
+    <div class="alert alert-primary">
+      <ul>
+        @foreach($errors->all() as $message)
+          <li>{{ $message }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
   <form enctype="multipart/form-data" method="POST" action="{{ route('menu.store') }}">
     @csrf
     <div class="form-group">
@@ -10,7 +19,7 @@
       <input name="name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="料理名を入力してください">
     </div>
     <div class="form-group">
-      <label for="exampleFormControlFile1">サムネイル画像</label>
+      <label for="exampleFormControlFile1">画像</label>
       <input name="image" type="file" class="form-control-file" id="exampleFormControlFile1">
     </div>
     <div class="form-group">
