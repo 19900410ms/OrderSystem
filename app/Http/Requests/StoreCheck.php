@@ -24,7 +24,7 @@ class StoreCheck extends FormRequest
     public function rules()
     {
         return [
-            'total_price' => 'required',
+            'total_price' => 'required|numeric',
         ];
     }
 }

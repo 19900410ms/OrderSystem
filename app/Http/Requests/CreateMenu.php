@@ -26,8 +26,8 @@ class CreateMenu extends FormRequest
         return [
             'name'     => 'required|max:30',
             'image'    => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'price'    => 'required',
-            'category' => 'required',
+            'price'    => 'required|numeric',
+            'category' => 'required|numeric|min:1|max:6',
         ];
     }
 
